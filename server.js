@@ -1,6 +1,9 @@
 import express from "express"
 import cors from "cors"
 import apps from "./api/apps.route.js"
+import { dirname } from "path"
+import path from "path"
+import { fileURLToPath } from 'url';
 
 const app = express()
 
@@ -11,11 +14,18 @@ app.use(express.json())
 // if (process.env.NODE_ENV === 'production') {
   // production mode
   // }
+  // api routes
   app.use("/api/v1/apps", apps)
-  app.use(express.static("client/build"));
-  // app.get('*', (req, res) => {
-  //   res.sendFile(path.path(__dirname, '../build'));
-  // });
+
+  // views
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = dirname(__filename);
+  app.use(express.static(path.resolve(__dirname, "./client/build")));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+  });
+
+  // errors
   app.use("*", (req, res) => res.status(404).json({ error : "not found"}))
 
 
