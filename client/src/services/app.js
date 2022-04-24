@@ -1,27 +1,28 @@
 import http from "../http-common.js"
 
 class AppDataService {
-  getAll(page = 0) {
-    return http.get(`?page=${page}`);
+  getAll() {
+    return http.get(`/`);
   }
   get(id) {
     return http.get(`/id/${id}`);
   }
-  find(query, by = "name", page = 0) {
-    return http.get(`?${by}=${query}&page=${page}`);
+  // find(query, by = "name", page = 0) {
+  //   return http.get(`?${by}=${query}&page=${page}`);
+  // }
+  createApp(data) {
+    return http.post("/", data);
   }
-  createReview(data) {
-    return http.post("/review", data);
+  updateApp(data) {
+    return http.put("/", data);
   }
-  updateReview(data) {
-    return http.put("/review", data);
+  deleteApp(id) {
+    console.log("id here: ", id)
+    return http.delete(`/?id=${id}`);
   }
-  deleteReview(id) {
-    return http.delete(`/review?id=${id}`);
-  }
-  getCuisines(id) {
-    return http.get(`cuisines`);
-  }
+  // getCuisines(id) {
+  //   return http.get(`cuisines`);
+  // }
 }
 
 export default new AppDataService();

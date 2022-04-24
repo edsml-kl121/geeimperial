@@ -103,7 +103,10 @@ export default class AppsController {
     try {
       // const reviewId = req.query.id
       // const userId = req.body.user_id
-      const id = req.params.id
+      // console.log("id query: ", req.query)
+      // console.log("id body: ", req.body)
+      // console.log("id body: ", res)
+      const id = req.query.id
       const reviewResponse = await AppsDAO.deleteApp(
         id
       )
