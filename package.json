@@ -10,7 +10,7 @@
     "server": "node server.js"
   },
   "engines": {
-    "node": "10.16.0"
+    "node": "17.9.0"
   },
   "keywords": [],
   "author": "",
