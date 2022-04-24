@@ -6,11 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-<<<<<<< HEAD
-    "heroku-postbuild": "cd client && npm install && npm run build",
-=======
     "heroku-postbuild": "cd client && npm install --legacy-peer-deps && npm run build",
->>>>>>> ca781a56005057d69f29dcdc3d08d2318f664faa
     "server": "node server.js"
   },
   "keywords": [],
