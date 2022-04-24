@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "npm install && cd client && npm install && npm run build",
+    "start": "nodemon server"
   },
   "engines": {
     "node": "17.9.0"
