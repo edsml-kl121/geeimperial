@@ -13,8 +13,8 @@ class AppDataService {
   createApp(data) {
     return http.post("/", data);
   }
-  updateApp(data) {
-    return http.put("/", data);
+  updateApp(data, id) {
+    return http.put(`/id/${id}`, data);
   }
   deleteApp(id) {
     console.log("id here: ", id)
