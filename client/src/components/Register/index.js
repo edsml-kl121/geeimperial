@@ -1,64 +1,51 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React , {useState} from 'react'
+import AuthDataService from "../../services/auth"
 
-function App() {
-	const history = useNavigate()
-
-	const [name, setName] = useState('')
-	const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
-
-	async function registerUser(event) {
-		event.preventDefault()
-
-		const response = await fetch('http://localhost:1337/api/register', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				name,
-				email,
-				password,
-			}),
-		})
-
-		const data = await response.json()
-
-		if (data.status === 'ok') {
-			history.push('/login')
-		}
-	}
-
-	return (
-		<div>
-			<h1>Register</h1>
-			<form onSubmit={registerUser}>
-				<input
-					value={name}
-					onChange={(e) => setName(e.target.value)}
-					type="text"
-					placeholder="Name"
-				/>
-				<br />
-				<input
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-					type="email"
-					placeholder="Email"
-				/>
-				<br />
-				<input
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-					type="password"
-					placeholder="Password"
-				/>
-				<br />
-				<input type="submit" value="Register" />
-			</form>
-		</div>
-	)
+export default function Register() {
+  const [user, setUser] = useState({name:"", email: "", password: ""});
+  const [register, setRegister] = useState(false);
+  const handleChange = e => {
+    const {name, value} = e.target
+    setUser({...user, [name]: value})
+  }
+  // const postRegister = ()=>{
+  //   const {name,email,password} = user
+  //   if (name && email && password){
+  //    axios.post("http://localhost:5000/api/v1/auth/register",user )
+  //    .then(res=> {
+  //      console.log(res);
+  //      setRegister(true);
+  //     }
+  //   )
+  //   }
+  //   else{
+  //       alert("invalid input")
+  //   }
+  // }
+  const registering = () => {
+    // var data = {name: app, link: applink};
+    AuthDataService.RegisterAuth(user)
+      .then(res => {
+        console.log(res.data);
+        setRegister(true);
+      })
+      .catch(e => {
+        console.log(e);
+      })
+  }
+  return (
+    <>
+    <div>
+      <h2>Register</h2>
+      <input type="text" name="name" value={user.name} onChange={handleChange} placeholder="name"/>
+      <br></br>
+      <input type="text" name="email" value={user.email} onChange={handleChange} placeholder="Email"/>
+      <br></br>
+      <input type="text" name="password" value={user.password} onChange={handleChange} placeholder="password"/>
+      <br></br>
+      <button type="submit"  onClick={registering} >Register</button>
+      <p>{register ? ("you have successfully registered"): ("Please register")}</p>
+    </div>
+    </>
+  )
 }
-
-export default App

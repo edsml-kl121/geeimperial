@@ -1,6 +1,7 @@
 import express from "express"
 import cors from "cors"
 import apps from "./api/apps.route.js"
+import auth from "./api/auth.route.js"
 import { dirname } from "path"
 import path from "path"
 import { fileURLToPath } from 'url';
@@ -15,6 +16,7 @@ app.use(express.json())
   // production mode
   // }
   // api routes
+  app.use("/api/v1/auth", auth)
   app.use("/api/v1/apps", apps)
 
   // views

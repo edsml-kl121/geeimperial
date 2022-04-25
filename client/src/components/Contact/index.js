@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import AppDataService from "../../services/app"
 import { Link, NavLink, useLocation } from "react-router-dom";
 
-export default function Contact() {
+export default function Contact(props) {
   const [apps, setApps] = useState([]);
   const initialReviewState = ""
   const [app, setApp] = useState(initialReviewState)
@@ -113,7 +113,7 @@ export default function Contact() {
         <div key = {app._id}> 
           <h2>name: <Link to = {`/contact/${app._id}`} state={{id: app._id}}>{app.name}</Link></h2>
           <p>link: {app.link}</p>
-          <a onClick={() => removeApp(app._id)} className="btn btn-primary col-lg-5 mx-1 mb-1">Delete</a>
+          {props.user ? <a onClick={() => removeApp(app._id)} className="btn btn-primary col-lg-5 mx-1 mb-1">Delete</a> : ""}
         </div>
         </>
         )

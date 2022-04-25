@@ -1,54 +1,59 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import AuthDataService from "../../services/auth"
+import { Link } from 'react-router-dom'
 
-const Login = () => {
-	const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
+const Login = (props) => {
+  const history = useNavigate();
+	const [user, setUser] = useState({email: "", password: ""});
 
-	async function loginUser(event) {
-		event.preventDefault()
+  const handleChange = (event) => {
+    const {name, value} = event.target
+    setUser({...user, [name]: value})
+  }
 
-		const response = await fetch('http://localhost:1337/api/login', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				email,
-				password,
-			}),
-		})
-
-		const data = await response.json()
-
-		if (data.user) {
-			localStorage.setItem('token', data.user)
-			alert('Login successful')
-			window.location.href = '/dashboard'
-		} else {
-			alert('Please check your username and password')
-		}
-	}
-
+	const loggingin = () => {
+    console.log("hi")
+    AuthDataService.LoginAuth(user)
+    .then(res => {
+      console.log(res.data.status)
+      if (res.data.status === "login success") {
+				props.login(user)
+				localStorage.setItem('user-data', JSON.stringify(user));
+				history("/")
+			} else {
+				console.log("wrong logins")
+				alert("wrong credentials")
+			}
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }
+	
 	return (
 		<div>
 			<h1>Login</h1>
-			<form onSubmit={loginUser}>
 				<input
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-					type="email"
+          name = "email"
+					value={user.email}
+					// defaultValue={user.email}
+					onChange={handleChange}
+					type="text"
 					placeholder="Email"
 				/>
 				<br />
 				<input
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
+          name="password"
+					value={user.password}
+          // defaultValue={user.password}
+					onChange={handleChange}
 					type="password"
 					placeholder="Password"
 				/>
 				<br />
-				<input type="submit" value="Login" />
-			</form>
+				<button type = "submit" onClick={loggingin} >Login</button>
+				<Link to="/register"><button>Register</button></Link>
 		</div>
 	)
 }

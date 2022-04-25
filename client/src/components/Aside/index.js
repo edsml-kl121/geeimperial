@@ -24,7 +24,7 @@ import "react-pro-sidebar/dist/css/styles.css";
 import "./index.css";
 
 
-const Header = () => {
+const Header = (props) => {
   
     //create initial menuCollapse state using useState hook
     const [menuCollapse, setMenuCollapse] = useState(true);
@@ -71,10 +71,10 @@ const Header = () => {
                     Contact
                     <NavLink to = "/contact" />
                   </MenuItem>
-                  <MenuItem active = {location.pathname === "/login"} icon={<FaRegHeart />}>
+                  {/* <MenuItem active = {location.pathname === "/login"} icon={<FaRegHeart />}>
                     Login
                     <NavLink to = "/login" />
-                  </MenuItem>
+                  </MenuItem> */}
                   <MenuItem active = {location.pathname === "/register"} icon={<FaRegHeart />}>
                     Register
                     <NavLink to = "/register" />
@@ -83,7 +83,8 @@ const Header = () => {
           </SidebarContent>
           <SidebarFooter>
             <Menu iconShape="square">
-              <MenuItem icon={<FiLogOut />}>Logout</MenuItem>
+              {console.log("p", props.props)}
+              <MenuItem icon={<FiLogOut />} onClick={props.props}>Logout</MenuItem>
             </Menu>
           </SidebarFooter>
         </ProSidebar>

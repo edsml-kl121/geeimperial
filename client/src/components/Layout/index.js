@@ -2,10 +2,11 @@ import { Outlet } from 'react-router-dom'
 import Aside from '../Aside'
 // import './index.scss'
 
-const Layout = () => {
+const Layout = (props) => {
   return (
     <div className="App">
-      <Aside />
+      {/* {console.log(props.logout)} */}
+      <Aside props={props.logout}/>
       <Outlet />
     </div>
   )
