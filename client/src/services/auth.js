@@ -2,13 +2,13 @@ import http from "../http-common.js"
 
 class AuthDataService {
   getAll() {
-    return http.get(`auth/login`);
+    return http.get(`/auth/login`);
   }
   LoginAuth(data) {
-    return http.post("auth/login", data);
+    return http.post("/auth/login", data);
   }
   RegisterAuth(data) {
-    return http.post("auth/register", data);
+    return http.post("/auth/register", data);
   }
 }
 
