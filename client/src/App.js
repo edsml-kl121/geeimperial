@@ -3,6 +3,8 @@ import Main from "./components/Main";
 import Contact from "./components/Contact";
 import Projects from "./components/Projects";
 import App from "./components/App";
+import Login from "./components/Login"
+import Register from "./components/Register"
 import "react-pro-sidebar/dist/css/styles.css";
 // import "./styles/App.scss";
 import "./App.css"
@@ -13,6 +15,15 @@ import React from "react";
 // import { Fade } from "@mui/material";
 
 function Mainapp() {
+  const [user, setUser] = React.useState(null);
+
+  async function login(user = null) {
+    setUser(user);
+  }
+
+  async function logout() {
+    setUser(null)
+  }
   return (
     <>
       <Router>
@@ -22,7 +33,14 @@ function Mainapp() {
             <Route exact path="/Projects" element={<Projects/>} />
             <Route exact path="/Contact" element={<Contact/>} />
             <Route exact path="/Contact/:id" element={<App/>} />
-
+            <Route exact path="/login" element={<Login login = {login}/>} />
+            <Route exact path="/register" element={<Register/>} />
+            {/* <Route 
+            path="/login"
+            render={(props) => (
+              <Login {...props} login={login} />
+            )}
+          /> */}
           </Route>
         </Routes>        
       </Router>

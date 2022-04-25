@@ -71,8 +71,14 @@ const Header = () => {
                     Contact
                     <NavLink to = "/contact" />
                   </MenuItem>
-              <MenuItem icon={<RiPencilLine />}>Author</MenuItem>
-              <MenuItem icon={<BiCog />}>Settings</MenuItem>
+                  <MenuItem active = {location.pathname === "/login"} icon={<FaRegHeart />}>
+                    Login
+                    <NavLink to = "/login" />
+                  </MenuItem>
+                  <MenuItem active = {location.pathname === "/register"} icon={<FaRegHeart />}>
+                    Register
+                    <NavLink to = "/register" />
+                  </MenuItem>
             </Menu>
           </SidebarContent>
           <SidebarFooter>
