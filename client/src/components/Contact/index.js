@@ -8,7 +8,6 @@ export default function Contact(props) {
   const [app, setApp] = useState(initialReviewState)
   const [applink, setApplink] = useState(initialReviewState)
   const [edit, setEdit] = useState(false);
-
   useEffect(() => {
     retrieveApps();
   }, []);
@@ -111,7 +110,7 @@ export default function Contact(props) {
         return (
         <>
         <div key = {app._id}> 
-          <h2>name: <Link to = {`/contact/${app._id}`} state={{id: app._id}}>{app.name}</Link></h2>
+          <h2>name: <Link to = {`/contact/${app._id}`} state={{id: app._id, user_id: props.user}}>{app.name}</Link></h2>
           <p>link: {app.link}</p>
           {props.user ? <a onClick={() => removeApp(app._id)} className="btn btn-primary col-lg-5 mx-1 mb-1">Delete</a> : ""}
         </div>

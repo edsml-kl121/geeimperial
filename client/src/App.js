@@ -15,9 +15,9 @@ import React, { useEffect } from "react";
 // import { Fade } from "@mui/material";
 
 function Mainapp() {
-  // const persistentUserData = localStorage.getItem('user-data')
-  const [user, setLoginUser] = React.useState(null);
-  // const [user, setLoginUser] = React.useState(persistentUserData);
+  const persistentUserData = localStorage.getItem('user-data')
+  // const [user, setLoginUser] = React.useState(null);
+  const [user, setLoginUser] = React.useState(persistentUserData);
   console.log("user", user)
   async function login(user = null) {
     setLoginUser(user);

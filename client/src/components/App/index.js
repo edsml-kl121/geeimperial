@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import AppDataService from "../../services/app"
 import { Link } from "react-router-dom";
 
-export default function App() {
+export default function App(props) {
   const variant = false;
   const initialApp = {
     id: null,
@@ -13,7 +13,10 @@ export default function App() {
   };
   const [edit, setEdit] = useState(variant ? true : false)
   const [app, setApp] = useState(initialApp)
+  const [reviews, setReviews] = useState([])
+  const [review, setReview] = useState({name: "", text: "", app_id: "", user_id: ""})
   const location = useLocation();
+  console.log("loc",location);
   const getApp = (id) => {
     AppDataService.get(id)
     .then(res => {
@@ -23,8 +26,20 @@ export default function App() {
       console.log(e);
     })
   }
+
+  const getReviews = (id) => {
+    AppDataService.getAppReviews(id)
+    .then(res => {
+      setReviews(res.data)
+    })
+    .catch(e => {
+      console.log(e);
+    })
+  }
+
   useEffect(() => {
     getApp(location.state.id);
+    getReviews(location.state.id);
   }, [location.state.id]);
 
   const handleInputChange = (event) => {
@@ -49,8 +64,28 @@ export default function App() {
         setApp(prevState => {
           return {...prevState, name: app.name}
         });
-        console.log(res.data);
+        // console.log(res.data);
       })
+    }
+  }
+
+  const saveReview = (id) => {
+    console.log("hi")
+    var data = {};
+    if (edit) {
+      // AppDataService.updateApp(data)
+      // .then(res => {
+      //   setEdit(!edit);
+      // })
+    } else {
+      // AppDataService.createReview(data)
+      // .then(res => {
+      //   console.log(res.data)
+      //   setApps([...apps, data])
+      // })
+      // .catch(e => {
+      //   console.log(e);
+      // })
     }
   }
   console.log(app)
@@ -89,6 +124,15 @@ export default function App() {
       // <p>hi</p>
       )}
       <h2>Reviews:</h2>
+      {reviews.map((review) => {
+        return (
+        <>
+        <p>{review.name} : {review.text}</p>
+        {location.state.user_id ? (location.state.user_id._id === review.user_id ? "can edit" : "" ) : ""}
+        {console.log(location.state.user_id._id === review.user_id, location.state.user_id._id , review.user_id)}
+        </>
+          )
+      })}
       <h2><Link to = {`/contact`} state={{id: app._id}}>Back</Link></h2>
     </div> 
   // </AnimateOnChange>

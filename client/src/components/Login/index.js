@@ -1,16 +1,39 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import AuthDataService from "../../services/auth"
 import { Link } from 'react-router-dom'
 
 const Login = (props) => {
   const history = useNavigate();
-	const [user, setUser] = useState({email: "", password: ""});
+	const [user, setUser] = useState({_id: "", email: "", password: ""});
+	const [users, setUsers] = useState([]);
 
   const handleChange = (event) => {
     const {name, value} = event.target
     setUser({...user, [name]: value})
   }
+
+	const loginAll = () => {
+		AuthDataService.getAll()
+		.then(res => {
+			console.log(res.data.users);
+			setUsers(res.data.users)
+		})
+		.catch(e => {
+			console.log(e);
+		})
+	}
+
+	useEffect(() => {
+		loginAll();
+	}, [])
+	
+	const MailMatchId = (email) => {
+		var matched_email = users.filter((user) => {
+			return user.email === "test0@email.com"
+		})
+		return matched_email[0]._id
+	}
 
 	const loggingin = () => {
     console.log("hi")
@@ -18,6 +41,7 @@ const Login = (props) => {
     .then(res => {
       console.log(res.data.status)
       if (res.data.status === "login success") {
+				user._id = MailMatchId(user.email)
 				props.login(user)
 				localStorage.setItem('user-data', JSON.stringify(user));
 				history("/")
