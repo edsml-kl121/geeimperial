@@ -2,6 +2,23 @@ import React, { useEffect, useState } from "react";
 import AppDataService from "../../services/app"
 import { Link, NavLink, useLocation } from "react-router-dom";
 
+import AppBar from '@mui/material/AppBar';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import CssBaseline from '@mui/material/CssBaseline';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import Container from '@mui/material/Container';
+// import Link from '@mui/material/Link';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 export default function Contact(props) {
   const [apps, setApps] = useState([]);
   const initialReviewState = ""
@@ -79,45 +96,76 @@ export default function Contact(props) {
 
   return (
     <div className="main">
-      <h1>This is Contact</h1>
-      <div className="form-group">
-        <label htmlFor="description">Create App</label>
-        <input
-          type="text"
-          className="form-control"
-          id="text"
-          required
-          value={app}
-          onChange={handleInputChange}
-          name="text"
-        />
-        <input
-          type="text"
-          className="form-control"
-          id="text"
-          required
-          value={applink}
-          onChange={handleInputChange2}
-          name="text"
-        />
-      </div>
-      <button onClick={saveApp} className="btn btn-success">
-        Submit
-      </button>
-      <p>List of apps</p>
-      {/* <p>{JSON.stringify(restaurants[0]._id)}</p> */}
-      {apps.map((app) => {
-        return (
-        <>
-        <div key = {app._id}> 
-          <h2>name: <Link to = {`/contact/${app._id}`} state={{id: app._id, user_id: props.user}}>{app.name}</Link></h2>
-          <p>link: {app.link}</p>
-          {props.user ? <a onClick={() => removeApp(app._id)} className="btn btn-primary col-lg-5 mx-1 mb-1">Delete</a> : ""}
-        </div>
-        </>
-        )
-      })}
-      {/* <p>{restaurants[0]}</p> */}
+        <Container sx={{ py: 2 }} maxWidth="md">
+          {/* End hero unit */}
+            <h1>This is Contact</h1>
+            <p>List of apps</p>
+            <div className="form-group">
+            <label htmlFor="description">Create App</label>
+              <Stack
+                component="form"
+                sx={{
+                  width: '100%',
+                }}
+                spacing={2}
+                noValidate
+                autoComplete="off"
+              >
+              <TextField
+                id="name-input"
+                name="text"
+                label="app"
+                type="text"
+                value={app}
+                // helperText={text === "" ? 'Empty!' : ' '}
+                onChange={handleInputChange}
+              />
+              <TextField
+                id="name-input"
+                name="text"
+                label="link"
+                type="text"
+                value={applink}
+                // helperText={text === "" ? 'Empty!' : ' '}
+                onChange={handleInputChange2}
+              />
+          <Button onClick={saveApp} >
+            Submit
+          </Button>
+            </Stack>
+          </div>
+          <Grid container spacing={4}>
+            {apps.map((app) => (
+              <Grid item key={app} xs={12} sm={6} md={4}>
+                <Card
+                  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+                >
+                  <CardMedia
+                    component="img"
+                    sx={{
+                      // 16:9
+                      pt: '0.25%',
+                    }}
+                    image="https://source.unsplash.com/random"
+                    alt="random"
+                  />
+                  <CardContent sx={{ flexGrow: 1 }}>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {app.name}
+                    </Typography>
+                    <Typography>
+                      {app.link}
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Link to = {`/contact/${app._id}`} state={{id: app._id, user_id: props.user}}><Button size="small">View</Button></Link>
+                    {props.user ? <Button onClick={() => removeApp(app._id)} size="small">Delete</Button> : ""}
+                  </CardActions>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
     </div>
   );
 }

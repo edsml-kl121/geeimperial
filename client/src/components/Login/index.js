@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 const Login = (props) => {
   const history = useNavigate();
-	const [user, setUser] = useState({_id: "", email: "", password: ""});
+	const [user, setUser] = useState({_id: "", name: "", email: "", password: ""});
 	const [users, setUsers] = useState([]);
 
   const handleChange = (event) => {
@@ -32,7 +32,7 @@ const Login = (props) => {
 		var matched_email = users.filter((user) => {
 			return user.email === "test0@email.com"
 		})
-		return matched_email[0]._id
+		return [matched_email[0]._id, matched_email[0].name]
 	}
 
 	const loggingin = () => {
@@ -41,7 +41,8 @@ const Login = (props) => {
     .then(res => {
       console.log(res.data.status)
       if (res.data.status === "login success") {
-				user._id = MailMatchId(user.email)
+				user._id = MailMatchId(user.email)[0];
+				user.name = MailMatchId(user.email)[1]
 				props.login(user)
 				localStorage.setItem('user-data', JSON.stringify(user));
 				history("/")

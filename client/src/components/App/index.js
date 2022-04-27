@@ -3,6 +3,8 @@ import { SpinnerCircular } from 'spinners-react';
 import { useLocation } from "react-router-dom";
 import AppDataService from "../../services/app"
 import { Link } from "react-router-dom";
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 export default function App(props) {
   const variant = false;
@@ -14,9 +16,12 @@ export default function App(props) {
   const [edit, setEdit] = useState(variant ? true : false)
   const [app, setApp] = useState(initialApp)
   const [reviews, setReviews] = useState([])
-  const [review, setReview] = useState({name: "", text: "", app_id: "", user_id: ""})
+  // const [review, setReview] = useState({name: "", text: "", app_id: "", user_id: ""})
+  // const [showreview, setShowreview] = useState(false);
+  const [formval, setFormval] = useState(true)
+  const [text, setText] = useState("");
   const location = useLocation();
-  console.log("loc",location);
+  console.log("loc",location.state.user_id);
   const getApp = (id) => {
     AppDataService.get(id)
     .then(res => {
@@ -25,6 +30,14 @@ export default function App(props) {
     .catch(e => {
       console.log(e);
     })
+  }
+
+
+  const checkForm = (text) => {
+    if (text.length > 10 || text.length === 0){
+      return false
+    }
+    return true
   }
 
   const getReviews = (id) => {
@@ -42,6 +55,10 @@ export default function App(props) {
     getReviews(location.state.id);
   }, [location.state.id]);
 
+
+  const handleChange = (event) => {
+    setText(event.target.value)
+  }
   const handleInputChange = (event) => {
     app.name = event.target.value
     setApp(app)
@@ -71,21 +88,21 @@ export default function App(props) {
 
   const saveReview = (id) => {
     console.log("hi")
-    var data = {};
-    if (edit) {
-      // AppDataService.updateApp(data)
-      // .then(res => {
-      //   setEdit(!edit);
-      // })
-    } else {
-      // AppDataService.createReview(data)
-      // .then(res => {
-      //   console.log(res.data)
-      //   setApps([...apps, data])
-      // })
-      // .catch(e => {
-      //   console.log(e);
-      // })
+    var data = {app_id: location.state.id, text: text, user_id: location.state.user_id._id, name: location.state.user_id.name};
+    if  (!checkForm(text)) {
+      // alert("invalid character")
+      setFormval(false)
+    }
+    else {
+      AppDataService.createReview(data)
+      .then(res => {
+        console.log(res.data)
+        setReviews([...reviews, data])
+        setFormval(true)
+      })
+      .catch(e => {
+        console.log(e);
+      })
     }
   }
   console.log(app)
@@ -115,24 +132,49 @@ export default function App(props) {
             onChange={handleInputChange2}
             name="text"
           />
-        <button onClick={saveApp} className="btn btn-success">
+        <Button onClick={saveApp} variant="contained" color="success">
           Submit
-        </button>
+        </Button>
         </div>
         ) : (
-      <button variant={variant} onClick={handleClose} className="btn btn-success">Edit</button>
+      <Button variant={variant} onClick={handleClose} color="success">Edit</Button>
       // <p>hi</p>
       )}
       <h2>Reviews:</h2>
       {reviews.map((review) => {
         return (
         <>
-        <p>{review.name} : {review.text}</p>
-        {location.state.user_id ? (location.state.user_id._id === review.user_id ? "can edit" : "" ) : ""}
-        {console.log(location.state.user_id._id === review.user_id, location.state.user_id._id , review.user_id)}
+        <p>{review.name} : {review.text}, {location.state.user_id ? (location.state.user_id._id === review.user_id ? <Button variant="contained" color="success">can edit</Button>: "" ) : ""}</p>
+        
         </>
           )
-      })}
+        })}
+      
+      {location.state.user_id ?
+       (
+        <>
+				{/* <input
+          name = "text"
+					value={text}
+					onChange={handleChange}
+					type="text"
+					placeholder="review"
+          /> */}
+          <TextField
+            id="name-input"
+            name="text"
+            label="Name"
+            type="text"
+            value={text}
+            helperText={text === "" ? 'Empty!' : ' '}
+            onChange={handleChange}
+          />
+          <br></br>
+       <Button type = "submit" onClick={saveReview} variant="contained" color="success"> Click here to add a review</Button>
+        </>
+       )
+       : "Please Login to add a review"}
+       {formval ? "" : <p>Invalid input please put in 1-10 characters</p>}
       <h2><Link to = {`/contact`} state={{id: app._id}}>Back</Link></h2>
     </div> 
   // </AnimateOnChange>
