@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "jest",
+    "test": "jest ./test",
     "start": "nodemon server",
     "heroku-postbuild": "cd client && npm install --legacy-peer-deps && npm run build"
   },
@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/preset-env": "^7.18.2",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@material-ui/lab": "^4.0.0-alpha.61",
@@ -30,5 +31,8 @@
     "mongodb": "^4.5.0",
     "nodemon": "^2.0.15",
     "react-hook-form": "^7.30.0"
+  },
+  "devDependencies": {
+    "@babel/preset-react": "^7.17.12"
   }
 }
