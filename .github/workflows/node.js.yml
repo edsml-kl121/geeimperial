@@ -29,7 +29,8 @@ jobs:
     # - run: npm ci
     - run: npm run build --if-present
     - run: |
-        npm install jest
+        npm install
         npm test
         cd client
+        npm install
         npm test
