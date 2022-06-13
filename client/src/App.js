@@ -33,8 +33,9 @@ function Mainapp() {
         <Routes>
           {/* <Route exact path="/" element={<Layout/> } > */}
             <Route exact path="/" element={<Layout logout = {logout}/>} >
-            {/* <Route exact path="/" element={user ? <Layout logout = {logout}/> : <Login login = {login}/>} > */}
-            <Route index element={user ? <Main/> :  <Login login = {login}/>} />
+            <Route index element={<Main/>}/>
+            {/* Uncomment to add logins */}
+            {/* <Route index element={user ? <Main/> :  <Login login = {login}/>} />  */}
             <Route exact path="/projects" element={<Projects/>} />
             <Route exact path="/register" element={<Register/>} />
             <Route exact path="/contact" element={<Contact user = {user}/> } />

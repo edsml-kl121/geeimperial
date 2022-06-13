@@ -105,78 +105,86 @@ export default function App(props) {
       })
     }
   }
-  console.log(app)
+  const [loading, setLoading] = React.useState(true);
+
+  const hideSpinner = () => {
+    setLoading(false)
+  };
   return (
     <div className="main">
-      <h1>This is app</h1>
-      <p>app: {app.name}</p>
-      <p>Link: {app.link}</p>
-      {edit ? (
-      <div className="form-group">
-          <label htmlFor="description">Edit App</label>
-          <input
-            type="text"
-            className="form-control"
-            id="text"
-            required
-            defaultValue={app.name}
-            onChange={handleInputChange}
-            name="text"
-          />
-          <input
-            type="text"
-            className="form-control"
-            id="text"
-            required
-            defaultValue={app.link}
-            onChange={handleInputChange2}
-            name="text"
-          />
-        <Button onClick={saveApp} variant="contained" color="success">
-          Submit
-        </Button>
-        </div>
-        ) : (
-      <Button variant={variant} onClick={handleClose} color="success">Edit</Button>
-      // <p>hi</p>
-      )}
-      <h2>Reviews:</h2>
-      {reviews.map((review) => {
-        return (
-        <>
-        <p>{review.name} : {review.text}, {location.state.user_id ? (location.state.user_id._id === review.user_id ? <Button variant="contained" color="success">can edit</Button>: "" ) : ""}</p>
+      <div className="container mb-5">
+        <h1>{app.name}</h1>
+        <p>n this example we have 3 “pages” handled by the router: a home page, an about page, and a users page. As you click around on the different s, the router renders the matching .Note: Behind the scenes a  renders an with a real href, so people using the keyboard for navigation or screen readers will still be able to use this app.</p>
+        <p>Link: {app.link}</p>
+          { loading ? <SpinnerCircular size= "100" style= {{marginLeft: 100, textAlign: "center"}}/> : null}
+        <iframe src = {app.link} title ="Mew" height = "500px" width = "1000px" onLoad={hideSpinner} style = {{ display: loading ? "none" : ""}}/>
+        {edit ? (
+        <div className="form-group">
+            <label htmlFor="description">Edit App</label>
+            <input
+              type="text"
+              className="form-control"
+              id="text"
+              required
+              defaultValue={app.name}
+              onChange={handleInputChange}
+              name="text"
+            />
+            <input
+              type="text"
+              className="form-control"
+              id="text"
+              required
+              defaultValue={app.link}
+              onChange={handleInputChange2}
+              name="text"
+            />
+          <Button onClick={saveApp} variant="contained" color="success">
+            Submit
+          </Button>
+          </div>
+          ) : (
+        <Button variant={variant} onClick={handleClose} color="success">Edit</Button>
+        // <p>hi</p>
+        )}
+        <h2>Reviews:</h2>
+        {reviews.map((review) => {
+          return (
+          <>
+          <p>{review.name} : {review.text}, {location.state.user_id ? (location.state.user_id._id === review.user_id ? <Button variant="contained" color="success">can edit</Button>: "" ) : ""}</p>
+          
+          </>
+            )
+          })}
         
-        </>
-          )
-        })}
-      
-      {location.state.user_id ?
-       (
-        <>
-				{/* <input
-          name = "text"
-					value={text}
-					onChange={handleChange}
-					type="text"
-					placeholder="review"
-          /> */}
-          <TextField
-            id="name-input"
-            name="text"
-            label="Name"
-            type="text"
+        {location.state.user_id ?
+        (
+          <>
+          {/* <input
+            name = "text"
             value={text}
-            helperText={text === "" ? 'Empty!' : ' '}
             onChange={handleChange}
-          />
-          <br></br>
-       <Button type = "submit" onClick={saveReview} variant="contained" color="success"> Click here to add a review</Button>
-        </>
-       )
-       : "Please Login to add a review"}
-       {formval ? "" : <p>Invalid input please put in 1-10 characters</p>}
-      <h2><Link to = {`/contact`} state={{id: app._id}}>Back</Link></h2>
-    </div> 
-  // </AnimateOnChange>
+            type="text"
+            placeholder="review"
+            /> */}
+            <TextField
+              id="name-input"
+              name="text"
+              label="Name"
+              type="text"
+              value={text}
+              helperText={text === "" ? 'Empty!' : ' '}
+              onChange={handleChange}
+            />
+            <br></br>
+        <Button type = "submit" onClick={saveReview} variant="contained" color="success"> Click here to add a review</Button>
+          </>
+        )
+        : "Please Login to add a review"}
+        {formval ? "" : <p>Invalid input please put in 1-10 characters</p>}
+        <h2><Link to = {`/contact`} state={{id: app._id}}>Back</Link></h2>
+      </div> 
+  {/* // </AnimateOnChange> */}
+    </div>
   );
 }
