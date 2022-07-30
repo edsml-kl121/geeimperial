@@ -12,7 +12,7 @@ export default function Main() {
   //   setLoading(false)
   // };
   return (
-    <div className="main">
+    <div className="main bg-light">
       <About/>
       <Info/>
       <Contact/>

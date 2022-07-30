@@ -187,7 +187,7 @@ export default function App(props) {
         )
         : "Please Login to add a review"}
         {formval ? "" : <p>Invalid input please put in 1-10 characters</p>}
-        <h2><Link to = {`/contact`} state={{id: app._id}}>Back</Link></h2>
+        <h2><Link to = {`/projects`} state={{id: app._id}}>Back</Link></h2>
       </div> 
   {/* // </AnimateOnChange> */}
     </div>

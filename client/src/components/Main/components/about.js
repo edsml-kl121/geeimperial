@@ -19,11 +19,11 @@ import {
 export default function About() {
   const [styles, setStyles] = useState({fontWeight:"400", fontSize:"30px"});
   return (
-    <section id="about">
+    <section id="about" className="bg-white">
       <Fade>
       <Container>
       <Row className="my-5">
-        <Col xs={12} md={5} className="mt-5 my-5 mb-5">
+        <Col xs={12} md={5} className="my-5">
           <br></br>
           <br></br>
           <br></br>

@@ -55,7 +55,7 @@ import {
 
 export default function App() {
   return (
-    <MDBFooter className='text-center text-white' style={{ backgroundColor: '#f1f1f1' }}>
+    <MDBFooter className='text-center text-primary bg-light'>
       <MDBContainer className='pt-4 mt-5'>
         <section className='mb-4'>
           <MDBBtn
@@ -63,7 +63,7 @@ export default function App() {
             link
             floating
             size="lg"
-            className='text-blue m-1'
+            className='text-blue m-2'
             href='mailto:mew.chayutaphong@gmail.com?subject=Me&body=Hello!'
             role='button'
           >
@@ -75,7 +75,7 @@ export default function App() {
             link
             floating
             size="lg"
-            className='text-blue m-1'
+            className='text-white m-2'
             href='https://www.linkedin.com/in/kandanai/'
             role='button'
           >
@@ -83,11 +83,11 @@ export default function App() {
           </MDBBtn>
 
           <MDBBtn
-            rippleColor="blue"
+            rippleColor="white"
             link
             floating
             size="lg"
-            className='text-blue'
+            className='text-white m-2'
             href='https://github.com/edsml-kl121'
             role='button'
           >
@@ -96,11 +96,11 @@ export default function App() {
         </section>
       </MDBContainer>
 
-      <div className='text-center text-dark p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
+      <div className='text-center text-white p-3 bg-secondary'>
         © Copyright 2022 Kandanai Leenutaphong
-        <a className='text-dark' href='https://www.kandanaileenutaphong.com/'>
+        {/* <a className='text-dark' href='https://www.kandanaileenutaphong.com/'>
           https://www.kandanaileenutaphong.com/
-        </a>
+        </a> */}
       </div>
     </MDBFooter>
   );

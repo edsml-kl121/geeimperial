@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const pages = ['projects'];
 const settings = ['coming soon'];
@@ -34,9 +35,17 @@ const ResponsiveAppBar = (props) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
+  const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+      primary: {
+        main: "#29465B",
+      },
+    },
+  });
   return (
-    <AppBar position="static">
+    <ThemeProvider theme={darkTheme}>
+    <AppBar position="static" enableColorOnDark>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -46,9 +55,7 @@ const ResponsiveAppBar = (props) => {
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
           <NavLink to = "/" style={{ textDecoration: 'none' }}>
-          <Tooltip title="Home">
-            <Avatar>WO</Avatar>
-            </Tooltip>
+            <span className='text-white my-2'>water oracle</span>
           </NavLink>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -103,7 +110,7 @@ const ResponsiveAppBar = (props) => {
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: 'white', display: 'block' , textDecoration: 'none'}}
               >
                 {page}
               
@@ -144,6 +151,7 @@ const ResponsiveAppBar = (props) => {
         </Toolbar>
       </Container>
     </AppBar>
+    </ThemeProvider>
   );
 };
 export default ResponsiveAppBar;
