@@ -13,8 +13,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link, NavLink, useLocation } from "react-router-dom";
 
-const pages = ['Contact', 'projects', 'register'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pages = ['projects'];
+const settings = ['coming soon'];
 
 const ResponsiveAppBar = (props) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -47,7 +47,7 @@ const ResponsiveAppBar = (props) => {
           >
           <NavLink to = "/" style={{ textDecoration: 'none' }}>
           <Tooltip title="Home">
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+            <Avatar>WO</Avatar>
             </Tooltip>
           </NavLink>
           </Typography>
@@ -115,7 +115,7 @@ const ResponsiveAppBar = (props) => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar>WO</Avatar>
               </IconButton>
             </Tooltip>
             <Menu

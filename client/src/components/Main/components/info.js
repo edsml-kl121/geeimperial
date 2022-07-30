@@ -17,13 +17,14 @@ export default function Info() {
           <h1 className="text-primary mb-4">
             How &amp; it works?
           </h1>
-          <p className="text-base leading-relaxed mx-auto">
-            Some dummy text
-          </p>
+          <h2 className="text-black mb-5">
+            You can view the repository of our apps and contribute to
+            the water oracle by inserting the link to your apps. Below is an example of our app.
+          </h2>
         <Fade left cascade>
           <div className="container">
           { loading ? <SpinnerCircular size= "100" style= {{marginLeft: 100, textAlign: "center"}}/> : null}
-      <iframe src = "https://mewchayutaphong.users.earthengine.app/view/clickpanel" title ="Mew" height = "500px" width = "1000px" onLoad={hideSpinner} style = {{ display: loading ? "none" : ""}}/>
+      <iframe src = "https://mewchayutaphong.users.earthengine.app/view/globalwaterapp" title ="Mew" height = "500px" width = "1000px" onLoad={hideSpinner} style = {{ display: loading ? "none" : ""}}/>
           </div>
         </Fade>
         </div>

@@ -51,7 +51,7 @@ export default function About() {
 
           </p>
           <div className="text-center">
-          <Link to="/contact">
+          <Link to="/projects">
               <button type="button" className="btn btn-outline-primary py-2 my-2 mx-0 px-3">Explore Water now !</button>
           </Link>
             {/* </div> */}

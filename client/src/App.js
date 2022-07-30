@@ -1,6 +1,6 @@
 import Layout from "./components/Layout";
 import Main from "./components/Main";
-import Contact from "./components/Contact";
+// import Contact from "./components/Contact";
 import Projects from "./components/Projects";
 import App from "./components/App";
 import Login from "./components/Login"
@@ -36,10 +36,10 @@ function Mainapp() {
             <Route index element={<Main/>}/>
             {/* Uncomment to add logins */}
             {/* <Route index element={user ? <Main/> :  <Login login = {login}/>} />  */}
-            <Route exact path="/projects" element={<Projects/>} />
+            {/* <Route exact path="/projects" element={<Projects/>} /> */}
             <Route exact path="/register" element={<Register/>} />
-            <Route exact path="/contact" element={<Contact user = {user}/> } />
-            <Route exact path="/contact/:id" element={<App/>} />
+            <Route exact path="/projects" element={<Projects user = {user}/> } />
+            <Route exact path="/projects/:id" element={<App/>} />
           </Route>
         </Routes>        
       </Router>

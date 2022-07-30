@@ -5,6 +5,7 @@ import AppDataService from "../../services/app"
 import { Link } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import "./app.css"
 
 export default function App(props) {
   const variant = false;
@@ -112,12 +113,16 @@ export default function App(props) {
   };
   return (
     <div className="main">
-      <div className="container mb-5">
-        <h1>{app.name}</h1>
-        <p>n this example we have 3 “pages” handled by the router: a home page, an about page, and a users page. As you click around on the different s, the router renders the matching .Note: Behind the scenes a  renders an with a real href, so people using the keyboard for navigation or screen readers will still be able to use this app.</p>
-        <p>Link: {app.link}</p>
+      <div className="container my-5">
+        <h1 className="mt-5 text-primary" style={{fontWeight:"700", fontSize:"80px"}}>
+          {app.name}
+        </h1>
+        <p>{app.description}</p>
+        <p><strong>For full experience use the link below</strong></p>
+        <a href={app.link}>{app.link}</a>
+        <hr></hr>
           { loading ? <SpinnerCircular size= "100" style= {{marginLeft: 100, textAlign: "center"}}/> : null}
-        <iframe src = {app.link} title ="Mew" height = "500px" width = "1000px" onLoad={hideSpinner} style = {{ display: loading ? "none" : ""}}/>
+        <iframe src = {app.link} class="row-full" onLoad={hideSpinner} style = {{ display: loading ? "none" : ""}}/>
         {edit ? (
         <div className="form-group">
             <label htmlFor="description">Edit App</label>
