@@ -14,6 +14,8 @@ import MenuItem from '@mui/material/MenuItem';
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
+import WaterLogo from "../../images/WaterOracleLogo.png"
+
 const pages = ['projects'];
 const settings = ['coming soon'];
 
@@ -122,7 +124,12 @@ const ResponsiveAppBar = (props) => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar>WO</Avatar>
+              <img
+                className="rounded-circle"
+                width = "60"
+                alt="hero"
+                src= {WaterLogo}
+                />
               </IconButton>
             </Tooltip>
             <Menu
