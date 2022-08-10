@@ -51,11 +51,14 @@ export default function About() {
 
           </p>
           <div className="text-center">
-          <Link to="/projects">
+          <Link to="/projects" className="mx-2">
               <button type="button" className="btn btn-outline-primary py-2 my-2 mx-0 px-3">Explore Water now !</button>
           </Link>
-            {/* </div> */}
-          </div>
+          <a href="https://github.com/edsml-kl121/wateroracle" className="mx-2">
+              <button type="button" className="btn btn-outline-primary py-2 my-2 mx-0 px-3">See Code</button>
+          </a>
+            </div>
+          {/* </div> */}
           <br></br>
           <br></br>
           <br></br>
