@@ -44,10 +44,10 @@ export default function About() {
               Water Oracle
           </h1>
             <h2 className="text-black">
-             Solutions to study the water cycle
+             Solutions to map water bodies using the WaterNet model
             </h2>
           <p className="text-left">
-            A solution is created using <span className="text-primary">google earth engine. </span>
+            A solution is created using <span className="text-primary">google earth engine, google cloud Platform, Tensorflow. </span>
 
           </p>
           <div className="text-center">
