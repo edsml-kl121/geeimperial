@@ -100,7 +100,7 @@ export default function Contact(props) {
         <h1 className="mt-5 text-primary" style={{textAlign: "center", fontWeight:"700", fontSize:"80px"}}>
               Water Oracle apps
         </h1>
-        <h1 className="mb-5" style={{textAlign: "center"}}>Here are a list of water oracle's apps</h1>
+        <h1 className="mb-5" style={{textAlign: "center"}}>Here are a list of WaterNet's Application</h1>
         <Grid container spacing={4}>
             {apps.map((app) => (
               <Grid item key={app} xs={12} sm={6} md={4}>
@@ -136,7 +136,7 @@ export default function Contact(props) {
             <h1 className="my-5 text-primary" style={{textAlign: "center", fontWeight:"500", fontSize:"60px"}}>
                 Further contributions
             </h1>
-            <h2>You can create a google app engine on water and contribute</h2>
+            <h2>Apply WaterNet to real world problem and contribute to our lists </h2>
             <p>Please fill in the app name and the link to your google earth engine apps</p>
             <div className="form-group">
             <label htmlFor="description">Create App</label>
