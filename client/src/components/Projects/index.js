@@ -126,7 +126,7 @@ export default function Contact(props) {
                   </CardContent>
                   <CardActions>
                     <Link to = {`/projects/${app._id}`} state={{id: app._id, user_id: props.user}}><Button size="small">View</Button></Link>
-                    {props.user ? <Button onClick={() => removeApp(app._id)} size="small">Delete</Button> : ""}
+                    {/* {props.user ? <Button onClick={() => removeApp(app._id)} size="small">Delete</Button> : ""} */}
                   </CardActions>
                 </Card>
               </Grid>
