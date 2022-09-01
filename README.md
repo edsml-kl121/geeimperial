@@ -5,7 +5,7 @@
   <img src="https://user-images.githubusercontent.com/90031508/183531098-494a5819-7714-4f72-8ff8-d038982eb5f0.png" alt="Water Oracle logo"/>
 </p>
 
-## WaterNets: Multi-view Learning for classifying water bodies through combining the Landsat-8, Sentinel-1 and digital elevation models bands experimentally
+## Combining Landsat-8, Sentinel-1 and NASADEM using Multi-view Learning to Classify Water Bodies Globally
 
 A secondary Repository for independent research project which provides interface with react.js and node.js
 
